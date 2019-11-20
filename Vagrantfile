@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
         v.memory = 1024
         v.cpus = 2
     end
+    config.vm.network "forwarded_port", guest:80, host: 8080
 
     config.vm.define "master" do |master|
         master.vm.box = IMAGE_NAME

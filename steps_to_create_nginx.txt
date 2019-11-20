@@ -1,0 +1,15 @@
+# run in master node
+
+# create deployment app from example
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+
+# expose nginx-deployment to be accessible in cluster no port specified => same port as the app is exposed ( 80 -> 80 )
+kubectl expose deployment/nginx-deployment
+
+# be sure port 80 is being forwarded in Vagrantfile and it should work
+# access localhost:8080 [8080 (host) <- 80 (kubernetes)]
+
+# show service 'nginx-deployment' info
+kubectl get svc nginx-deployment
+# show endpoints for 'nginx-deployment'
+kubectl get ep nginx-deployment
