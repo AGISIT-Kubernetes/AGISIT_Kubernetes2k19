@@ -1,5 +1,7 @@
-IMAGE_NAME = "ubuntu/trusty64"
+IMAGE_NAME = "ubuntu/xenial64"
 N = 2
+
+
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
@@ -9,10 +11,10 @@ Vagrant.configure("2") do |config|
         v.cpus = 2
     end
 
-    config.vm.define "k8s-master" do |master|
+    config.vm.define "master" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.network "private_network", ip: "192.168.50.10"
-        master.vm.hostname = "k8s-master"
+        master.vm.hostname = "master"
         master.vm.provision "ansible" do |ansible|
             ansible.playbook = "kubernetes-setup/master-playbook.yml"
             ansible.extra_vars = {
