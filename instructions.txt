@@ -1,0 +1,4 @@
+ansible-playbook ssh-addkey.yml --ask-pass
+#pass is vagrant
+ansible-playbook master-playbook.yml
+ansible-playbook node-playbook.yml

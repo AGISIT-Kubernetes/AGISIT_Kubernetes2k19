@@ -85,9 +85,14 @@
         - kubeadm 
         - kubectl
 
+  - name: Ansible create file if it doesn't exist
+    file:
+      path: "/etc/default/kubelet"
+      state: touch
+
   - name: Configure node ip
     lineinfile:
-      path: /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+      path: /etc/default/kubelet
       line: KUBELET_EXTRA_ARGS=--node-ip={{ ansible_eth1.ipv4.address }}
 
   - name: Restart kubelet
