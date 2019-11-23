@@ -1,7 +1,13 @@
+[mgmt]
+
 ansible-playbook ssh-addkey.yml --ask-pass
 #pass is vagrant
 ansible-playbook master-playbook.yml
 ansible-playbook node-playbook.yml
 
-ansible-playbook nginx-deployment.yaml
-ansible-playbook nginx-service.yaml
+[master]
+
+kubectl apply -f nginx-deployment.yaml
+kubectl apply -f nginx-service.yaml
+
+# then, open browser on localhost:8080

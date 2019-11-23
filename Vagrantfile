@@ -14,7 +14,8 @@ Vagrant.configure("2") do |config|
     config.vm.define "master" do |master|
         master.vm.box = IMAGE_NAME
         master.vm.network "private_network", ip: "192.168.50.10"
-        master.vm.network "forwarded_port", guest:80, host: 32500
+        master.vm.network "forwarded_port", guest:32500, host: 8080
+        master.vm.network "forwarded_port", guest:8001, host: 8001
         master.vm.hostname = "master"
       	if Vagrant::Util::Platform.windows? then
       	# Configuration SPECIFIC for Windows 10 hosts
